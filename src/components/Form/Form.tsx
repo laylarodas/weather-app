@@ -59,8 +59,8 @@ export const Form = ({fetchWeather}: FormProps) => {
             <label htmlFor="country">Country: </label>
             <select
                 id="country"
-                value={search.country}
                 name="country"
+                value={search.country}
                 onChange={handleChange}
             >
                 <option className={styles.options} value=""> -- Select a Country -- </option>

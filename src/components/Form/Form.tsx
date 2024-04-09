@@ -5,9 +5,12 @@ import styles from './Form.module.css'
 import { Alert } from "../Alert/Alert"
 
 
+type FormProps = {
+    fetchWeather: (search: SearchType) => Promise<void>
+}
 
 
-export const Form = () => {
+export const Form = ({fetchWeather}: FormProps) => {
 
     const [search, setSearch] = useState<SearchType>({
         city: '',
@@ -21,7 +24,7 @@ export const Form = () => {
             ...search,
             [e.target.name]: e.target.value
         })
-    }
+    } 
 
     const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
@@ -30,7 +33,11 @@ export const Form = () => {
             setAlert('All fields are required')
             return
         }
+
+        fetchWeather(search)
     }
+
+
   return (
     <form 
         className={styles.form}

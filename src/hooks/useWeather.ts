@@ -39,9 +39,7 @@ const initialState = {
 export default function useWeather() {
 
     const [weather, setWeather] = useState<Weather>(initialState)
-
     const [loading, setLoading] = useState(false)
-
     const [notFound, setNotFound] = useState(false)
     
     
@@ -73,10 +71,8 @@ export default function useWeather() {
 
             const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appId}`
 
-            console.log(weatherUrl)
+            
             const { data: weatherResult } = await axios(weatherUrl)
-
-
 
             //ZOD
             const result = WeatherSchema.safeParse(weatherResult)

@@ -1,9 +1,9 @@
 .container{
     margin: 1rem auto;
-    background-color: var(--white);
+    background-color: #ffffff80;
     color: #000;
     border-radius: 1rem;
-    padding: 2rem;
+    padding: 1rem 4rem;
     text-align: center;
 }
 
@@ -29,4 +29,16 @@
 .temperatures span{
     font-weight: 400;
 
+}
+
+
+.divIcon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+.description{
+    text-transform: capitalize;
 }

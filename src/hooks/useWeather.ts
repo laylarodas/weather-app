@@ -11,7 +11,11 @@ const WeatherSchema = z.object({
         temp: z.number(),
         temp_min: z.number(),
         temp_max: z.number()
-    })
+    }),
+    weather: z.array(z.object({
+        description: z.string(),
+        icon: z.string()
+    }))
 })
 
 export type Weather = z.infer<typeof WeatherSchema>
@@ -22,7 +26,13 @@ const initialState = {
         temp: 0,
         temp_min: 0,
         temp_max: 0
-    }
+    },
+    weather: [
+        {
+            description: '',
+            icon: ''
+        }
+    ]
 }
 
 
@@ -45,9 +55,11 @@ export default function useWeather() {
 
             const geoUrl = `https://api.openweathermap.org/geo/1.0/direct?q=${search.city},~${search.country}&appid=${appId}`
 
+
             const {data} = await axios(geoUrl)//default get request
            
-            console.log(data)
+            
+            //console.log(data)
 
             //check if data is exist
 
@@ -56,10 +68,12 @@ export default function useWeather() {
                 return
             }
 
-            const {lat, lon} = data[0]
+            const lat = data[0].lat
+            const lon = data[0].lon
 
             const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${appId}`
 
+            console.log(weatherUrl)
             const { data: weatherResult } = await axios(weatherUrl)
 
 
